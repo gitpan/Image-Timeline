@@ -7,7 +7,7 @@ use GD;
 BEGIN {eval "use Date::Format"}
 
 use vars qw($VERSION);
-$VERSION = 0.09;
+$VERSION = 0.11;
 
 sub new {
   my ($pkg, %args) = @_;
@@ -47,6 +47,7 @@ sub write {
 
   local *OUT;
   open OUT, ">$filename" or die "Can't create '$filename': $!";
+  binmode(OUT);
   print OUT $image->$format(@args);
   close OUT;
 }
